@@ -1,5 +1,4 @@
 const scaleValue = document.querySelector("#scaleValue");
-const numpadState = document.querySelector("#numpadState");
 
 var HttpClient = function () {
   this.get = function (aUrl, aCallback) {
@@ -20,7 +19,6 @@ var HttpClient = function () {
 function updateStorage() {
   browser.storage.local.set({
     scaleValue: scaleValue.value,
-    numpadState: numpadState.value,
   });
 }
 
@@ -30,7 +28,6 @@ function updateStorage() {
  */
 function updateUI(restoredSettings) {
   scaleValue.value = restoredSettings.scaleValue || 90;
-  numpadState.value = restoredSettings.numpadState || "auto";
 }
 
 function onError(e) {
@@ -47,4 +44,3 @@ gettingStoredSettings.then(updateUI, onError);
  On blur, save the currently selected settings.
  */
 scaleValue.addEventListener("blur", updateStorage);
-numpadState.addEventListener("blur", updateStorage);

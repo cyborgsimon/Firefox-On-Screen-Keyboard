@@ -1,6 +1,6 @@
 /*
- FxKeyboard
- Version: 1.10.1
+ FxKeyboard improved
+ Version: 0.0.1
  Author:  Travis Fitzgerald
  Date:    23 March 2021
  Purpose: A virtual keyboard for Firefox
@@ -13,9 +13,9 @@ storageData.then(storedSetup, onError);
 function storedSetup(settings) {
   if (!settings.hasOwnProperty("scaleValue") || settings.scaleValue === null) {
     browser.storage.local.set({
-      scaleValue: 90,
+      scaleValue: 95,
     });
-    settings.scaleValue = 90;
+    settings.scaleValue = 95;
   }
   if (
     !settings.hasOwnProperty("numpadState") ||
@@ -28,7 +28,7 @@ function storedSetup(settings) {
   }
 
   var zoomValue = window.devicePixelRatio;
-  fxKeyboard.settings.scale = settings.scaleValue / zoomValue / 100;
+  fxKeyboard.settings.scale = settings.scaleValue / 100;
   fxKeyboard.settings.numpadState = settings.numpadState;
   console.log(fxKeyboard.settings.scale);
 }
@@ -59,7 +59,7 @@ var xpath = {
   },
 };
 
-var FxKeyboardLocale =
+var FxKeyboardEn =
   "{" +
   '"name": "English",' +
   '"locale": "en",' +
@@ -78,9 +78,9 @@ var FxKeyboardLocale =
   '["0", ")"],' +
   '["-", "_"],' +
   '["=", "+"],' +
-  '[{"label": "Delete", "special": 8, "flex": 10, "type": "repeat"}]' + // backspace
+  '[{"label": "←", "flex": 10, "special": 8, "type": "repeat"}]' + // backspace
   "], [" +
-  '[{"label": "Tab", "string": "\\t", "flex": 1}],' + // TAB
+  '[{"label": "↹", "flex": 1, "string": "\\t"}],' + // TAB
   '["q", "Q"],' +
   '["w", "W"],' +
   '["e", "E"],' +
@@ -95,7 +95,7 @@ var FxKeyboardLocale =
   '["&#93;", "&#125;"],' +
   '["\\\\","|","1"]' +
   "], [" +
-  '[{"label": "@", "string":"@", "flex": 10, "special": 50}],' +
+  '[{"label": "@", "flex": 10, "special": 50, "string":"@"}],' +
   '["a", "A"],' +
   '["s", "S"],' +
   '["d", "D"],' +
@@ -107,9 +107,9 @@ var FxKeyboardLocale =
   '["l", "L"],' +
   '[";", ":"],' +
   '["\'", "\\""],' +
-  '[{"label": "Enter", "flex": 15, "special": 13}]' +
+  '[{"label": "⏎", "flex": 15, "special": 13}]' +
   "], [" +
-  '[{"label": "Shift", "flex": 10, "special": "shift"}],' +
+  '[{"label": "⇧", "flex": 10, "special": "shift"}],' +
   '["z", "Z"],' +
   '["x", "X"],' +
   '["c", "C"],' +
@@ -120,15 +120,13 @@ var FxKeyboardLocale =
   '[",", "<"],' +
   '[".", ">"],' +
   '["/", "?"],' +
-  '[{"label": "Close","special": "closeFX","flex": 10}]' +
+  '[{"label": "Close", "flex": 10, "special": "closeFX"}]' +
   "], [" +
-  '[{"label": "Space", "flex": 5, "special": 32}],' + // space
-  '[{"label":".com", "flex": 1}],' +
-  '[{"label":".au", "flex": 1}]' +
+  '[{"label": " ", "flex": 5, "special": 32}]' + // space
   "]]" +
   "}";
 
-FxKeyNumpad = JSON.stringify({
+FxKeyNumpadEn = JSON.stringify({
   name: "English",
   locale: "en",
   defaultFlex: "10",
@@ -136,10 +134,171 @@ FxKeyNumpad = JSON.stringify({
     [["1"], ["2"], ["3"]],
     [["4"], ["5"], ["6"]],
     [["7"], ["8"], ["9"]],
-    [["0"], [{ label: "Delete", special: 8, flex: 1, type: "repeat" }]],
+    [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
     [[{ label: "Close", special: "closeFX", flex: 1 }]],
   ],
 });
+
+var FxKeyboardDe =
+  "{" +
+  '"name": "German",' +
+  '"locale": "de",' +
+  '"defaultFlex": "10",' +
+  '"main": [[' +
+  '["1", "!"],' +
+  '["2", "\\""],' +
+  '["3", "§"],' +
+  '["4", "$"],' +
+  '["5", "%"],' +
+  '["6", "&"],' +
+  '["7", "/"],' +
+  '["8", "("],' +
+  '["9", ")"],' +
+  '["0", "="],' +
+  '["ß", "?"],' +
+  '["&#91;", "&#123;"],' +
+  '["&#93;", "&#125;"],' +
+  '[{"label": "←", "flex": 10, "special": 8, "type": "repeat"}]' + // backspace
+  "], [" +
+  '[{"label": "↹", "flex": 1, "string": "\\t"}],' + // TAB
+  '["q", "Q"],' +
+  '["w", "W"],' +
+  '["e", "E"],' +
+  '["r", "R"],' +
+  '["t", "T"],' +
+  '["z", "Z"],' +
+  '["u", "U"],' +
+  '["i", "I"],' +
+  '["o", "O"],' +
+  '["p", "P"],' +
+  '["ü", "Ü"],' +
+  '["+", "*"],' +
+  '["\\\\","|", "1"]' +
+  "], [" +
+  '[{"label": "@", "flex": 10, "special": 50, "string":"@"}],' +
+  '["a", "A"],' +
+  '["s", "S"],' +
+  '["d", "D"],' +
+  '["f", "F"],' +
+  '["g", "G"],' +
+  '["h", "H"],' +
+  '["j", "J"],' +
+  '["k", "K"],' +
+  '["l", "L"],' +
+  '["ö", "Ö"],' +
+  '["ä", "Ä"],' +
+  '[{"label": "⏎", "flex": 15, "special": 13}]' +
+  "], [" +
+  '[{"label": "⇧", "flex": 10, "special": "shift"}],' +
+  '["y", "Y"],' +
+  '["x", "X"],' +
+  '["c", "C"],' +
+  '["v", "V"],' +
+  '["b", "B"],' +
+  '["n", "N"],' +
+  '["m", "M"],' +
+  '[",", ";"],' +
+  '[".", ":"],' +
+  '["-", "_"],' +
+  '[{"label": "Schließen", "flex": 10, "special": "closeFX"}]' +
+  "], [" +
+  '[{"label": " ", "flex": 5, "special": 32}]' + // space
+  "]]" +
+  "}";
+
+FxKeyNumpadDe = JSON.stringify({
+  name: "German",
+  locale: "de",
+  defaultFlex: "10",
+  main: [
+    [["1"], ["2"], ["3"]],
+    [["4"], ["5"], ["6"]],
+    [["7"], ["8"], ["9"]],
+    [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
+    [[{ label: "Schließen", special: "closeFX", flex: 1 }]],
+  ],
+});
+
+var FxKeyboardFr =
+  "{" +
+  '"name": "French",' +
+  '"locale": "fr",' +
+  '"defaultFlex": "10",' +
+  '"main": [[' +
+  '["²", "§"],' +
+  '["1", "&"],' +
+  '["2", "é"],' +
+  '["3", "\\""],' +
+  '["4", "\'"],' +
+  '["5", "("],' +
+  '["6", "-"],' +
+  '["7", "è"],' +
+  '["8", "_"],' +
+  '["9", "ç"],' +
+  '["0", "à"],' +
+  '["°", ")"],' +
+  '["=", "+"],' +
+  '[{"label": "←", "flex": 10, "special": 8, "type": "repeat"}]' + // backspace
+  "], [" +
+  '[{"label": "↹", "flex": 1, "string": "\\t"}],' + // TAB
+  '["a", "A"],' +
+  '["z", "Z"],' +
+  '["e", "E"],' +
+  '["r", "R"],' +
+  '["t", "T"],' +
+  '["y", "Y"],' +
+  '["u", "U"],' +
+  '["i", "I"],' +
+  '["o", "O"],' +
+  '["p", "P"],' +
+  '["&#91;", "&#123;"],' +
+  '["&#93;", "&#125;"],' +
+  '["\\\\","|","1"]' +
+  "], [" +
+  '[{"label": "@", "flex": 10, "special": 50, "string":"@"}],' +
+  '["q", "Q"],' +
+  '["s", "S"],' +
+  '["d", "D"],' +
+  '["f", "F"],' +
+  '["g", "G"],' +
+  '["h", "H"],' +
+  '["j", "J"],' +
+  '["k", "K"],' +
+  '["l", "L"],' +
+  '["m", "M"],' +
+  '["ù", "%"],' +
+  '["*", "µ"],' +
+  '[{"label": "⏎", "flex": 15, "special": 13}]' +
+  "], [" +
+  '[{"label": "⇧", "flex": 10, "special": "shift"}],' +
+  '["w", "W"],' +
+  '["x", "X"],' +
+  '["c", "C"],' +
+  '["v", "V"],' +
+  '["b", "B"],' +
+  '["n", "N"],' +
+  '[",", "?"],' +
+  '[";", "."],' +
+  '[":", "/"],' +
+  '["!", "#"],' +
+  '[{"label": "Fermer", "flex": 10, "special": "closeFX"}, ]' +
+  "], [" +
+  '[{"label": " ", "flex": 5, "special": 32}]' + // space
+  "]]" +
+  "}";
+
+  FxKeyNumpadFr = JSON.stringify({
+    name: "French",
+    locale: "fr",
+    defaultFlex: "10",
+    main: [
+      [["1"], ["2"], ["3"]],
+      [["4"], ["5"], ["6"]],
+      [["7"], ["8"], ["9"]],
+      [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
+      [[{ label: "Fermer", special: "closeFX", flex: 1 }]],
+    ],
+  });
 
 var FxKeyMap =
   "{" +
@@ -169,7 +328,7 @@ var FxKeyMap =
   '"_": 173,' +
   '"=": 61,' +
   '"+": 61,' +
-  '"Delete": 8,' +
+  '"←": 8,' +
   '"q": 81,' +
   '"w": 87,' +
   '"e": 69,' +
@@ -199,7 +358,7 @@ var FxKeyMap =
   '":": 59,' +
   '"\'": 222,' +
   '"\\"": 222,' +
-  '"Enter": 13,' +
+  '"⏎": 13,' +
   '"z": 90,' +
   '"x": 88,' +
   '"c": 67,' +
@@ -228,10 +387,11 @@ var fxKeyboard = {
     preScale: 0,
     padding: 8,
     kb_max_width: window.innerWidth,
-    kb_max_height: window.innerWidth * 0.3,
+    kb_max_height: window.innerWidth * 0.32,
     np_max_width: 220,
     np_max_height: 375,
     key_height: window.innerWidth * 0.05,
+    input_height: window.innerWidth * 0.045,
   },
 
   hierarchy: {
@@ -283,8 +443,8 @@ var fxKeyboard = {
         }
         kb.style.width =
           this.getMaxWidth(this.activeOSK) * this.settings.scale + "px";
-        kb.style.height =
-          this.getMaxHeight(this.activeOSK) * this.settings.scale + "px";
+        // kb.style.height =
+          // this.getMaxHeight(this.activeOSK) * this.settings.scale + "px";
         kb.style.padding = this.settings.padding * this.settings.scale + "px";
         kb.style.fontFamily = "arial,sans-serif";
         kb.style.color = "#000000";
@@ -292,39 +452,48 @@ var fxKeyboard = {
         kb.style.borderRadius = 5 * this.settings.scale + "px";
         for (const element of kb.childNodes) {
           for (const chNodes of element.childNodes) {
-            chNodes.style.width =
-              this.settings.key_height * this.settings.scale + "px";
-            chNodes.style.height =
-              this.settings.key_height * this.settings.scale + "px";
+            if (chNodes.id === "ptext") {
+              chNodes.style.width = "100%";
+              // chNodes.style.height =
+              //   this.settings.input_height * this.settings.scale + "px";
+            } else {
+              chNodes.style.width =
+                this.settings.key_height * this.settings.scale + "px";
+            }
             chNodes.style.margin =
               this.settings.padding * (this.settings.scale / 2) + "px";
             chNodes.style.borderRadius = 5 * this.settings.scale + "px";
           }
         }
-        if (
-          (kb.getBoundingClientRect().top !== 0
-            ? this.focusElementYBottom
-            : this.focusElementYTop) +
-            window.scrollY >
-          (kb.getBoundingClientRect().top !== 0
-            ? kb.getBoundingClientRect().top
-            : kb.getBoundingClientRect().bottom) +
-            window.scrollY
-        ) {
-          kb.style.top = 0;
-        } else if (
-          (kb.getBoundingClientRect().bottom !== window.innerHeight
-            ? kb.getBoundingClientRect().bottom
-            : kb.getBoundingClientRect().top) +
-            window.scrollY >
-          (kb.getBoundingClientRect().bottom !== window.innerHeight
-            ? this.focusElementYTop
-            : this.focusElementYBottom) +
-            window.scrollY
-        ) {
-          kb.style.bottom = 0;
-          kb.style.top = null;
-        }
+        // if (
+        //   (kb.getBoundingClientRect().top !== 0
+        //     ? this.focusElementYBottom
+        //     : this.focusElementYTop) +
+        //     window.scrollY >
+        //   (kb.getBoundingClientRect().top !== 0
+        //     ? kb.getBoundingClientRect().top
+        //     : kb.getBoundingClientRect().bottom) +
+        //     window.scrollY
+        // ) {
+        //   kb.style.top = 0;
+        // } else if (
+        //   (kb.getBoundingClientRect().bottom !== window.innerHeight
+        //     ? kb.getBoundingClientRect().bottom
+        //     : kb.getBoundingClientRect().top) +
+        //     window.scrollY >
+        //   (kb.getBoundingClientRect().bottom !== window.innerHeight
+        //     ? this.focusElementYTop
+        //     : this.focusElementYBottom) +
+        //     window.scrollY
+        // ) {
+        //   kb.style.bottom = 0;
+        //   kb.style.top = null;
+        // }
+      }
+
+      if (document.getElementById("ptext")) {
+        document.getElementById("ptext").innerHTML =
+          document.activeElement.value;
       }
     } else {
       if (!this.hierarchy.isMaster) {
@@ -374,7 +543,7 @@ var fxKeyboard = {
       keyD.style.backgroundColor = "rgb(255,255,255)";
     };
 
-    if (obj.label === "Shift") {
+    if (obj.label === "⇧") {
       keyD.onmouseup = function () {
         if (fxKeyboard.state === 0) {
           keyD.style.backgroundColor = "rgb(200,200,200)";
@@ -393,33 +562,38 @@ var fxKeyboard = {
         }
         fxKeyboard._setShift();
       };
-    } else if (obj.label === "Delete") {
+    } else if (obj.label === "←") {
       keyD.onmouseup = function () {
         fxKeyboard._sendKey(obj.label);
         keyD.style.backgroundColor = "rgb(255,255,255)";
       };
-    } else if (obj.label in { "@": "", ".com": "", ".au": "" }) {
+    } else if (obj.label in { "@": "" }) {
       keyD.onmouseup = function () {
         fxKeyboard._sendKey(obj.label);
         keyD.style.backgroundColor = "rgb(255,255,255)";
       };
-    } else if (obj.label === "Space") {
+    } else if (obj.label === " ") {
       keyD.onmouseup = function () {
         fxKeyboard._sendKey(" ");
         keyD.style.backgroundColor = "rgb(255,255,255)";
       };
-    } else if (obj.label === "Close") {
+    } else if (
+      obj.label === "Close" ||
+      obj.label === "Schließen" ||
+      obj.label === "Fermer"
+    ) {
       keyD.onmouseup = function () {
         fxKeyboard._toggleOpen(false);
         keyD.style.backgroundColor = "rgb(255,255,255)";
         fxKeyboard.lastPress = "close";
       };
-    } else if (obj.label === "Enter") {
+    } else if (obj.label === "⏎") {
       keyD.onmouseup = function () {
         keyD.style.backgroundColor = "rgb(255,255,255)";
+        document.activeElement.form.submit();
         fxKeyboard._sendKey(obj.label);
       };
-    } else if (obj.label === "Tab") {
+    } else if (obj.label === "↹") {
       keyD.onmouseup = function () {
         keyD.style.backgroundColor = "rgb(255,255,255)";
         var focussableElements =
@@ -489,13 +663,13 @@ var fxKeyboard = {
       );
     } else {
       switch (character) {
-        case "Delete":
+        case "←":
           fxKeyboard.focusElement.value = fxKeyboard.focusElement.value.slice(
             0,
             -1
           );
           break;
-        case "Enter":
+        case "⏎":
           fxKeyboard.focusElement.dispatchEvent(
             new KeyboardEvent("beforeinput", {
               key: character,
@@ -663,15 +837,28 @@ var fxKeyboard = {
     var keyb;
     var max_width = this.getMaxWidth(inputType);
     var max_height = this.getMaxHeight(inputType);
+    var language = (navigator.language || navigator.userLanguage).slice(0, 2);
     switch (inputType) {
       case fxKeyboard.inputTypes.keyboard:
-        var keys = JSON.parse(FxKeyboardLocale);
+        if (language === "de") {
+          var keys = JSON.parse(FxKeyboardDe);
+        } else if (language === "fr") {
+          var keys = JSON.parse(FxKeyboardFr);
+        } else {
+          var keys = JSON.parse(FxKeyboardEn);
+        }
         if (document.getElementById(inputType)) {
           return;
         }
         break;
       case fxKeyboard.inputTypes.numpad:
-        var keys = JSON.parse(FxKeyNumpad);
+        if (language === "de") {
+          var keys = JSON.parse(FxKeyNumpadDe);
+        } else if (language === "fr") {
+          var keys = JSON.parse(FxKeyNumpadFr);
+        } else {
+          var keys = JSON.parse(FxKeyNumpadEn);
+        }
         if (document.getElementById(inputType)) {
           return;
         }
@@ -693,8 +880,8 @@ var fxKeyboard = {
     keyb.style.textAlign = "center";
     keyb.style.position = "fixed";
     keyb.style.left = "50%";
-    keyb.style.bottom = 0;
-    keyb.style.transform = "translateX(-50%)";
+    keyb.style.top = "50%";
+    keyb.style.transform = "translate(-50%, -50%)";
     keyb.id = inputType;
     keyb.style.zIndex = "9999999";
     keyb.style.display = "none"; //hidden on insert.
@@ -716,6 +903,23 @@ var fxKeyboard = {
           }
         }
       }
+
+      var divText = document.createElement("div");
+      divText.style.display = "flex";
+      divText.style.alignItems = "center";
+      divText.style.justifyContent = "center";
+      divText.style.backgroundColor = "white";
+      divText.style.margin = this.settings.padding * (this.settings.scale / 2) + "px";
+      keyb.appendChild(divText);
+
+      var paragraph = document.createElement("p");
+      paragraph.id = "ptext";
+      paragraph.style.display = "flex";
+      paragraph.style.alignItems = "center";
+      paragraph.style.justifyContent = "center";
+      paragraph.style.width = "100%";
+      divText.appendChild(paragraph);
+
       for (var row in keys.main) {
         var nrow = document.createElement("div");
         nrow.style.display = "flex";
@@ -925,6 +1129,7 @@ var textInputTypes = {
 };
 
 var integerInputTypes = {
+  text: "numeric",
   number: "",
   range: "",
   tel: "",
@@ -966,8 +1171,8 @@ function oskAction(clicked) {
   } else {
     if (clicked.target.id.indexOf("fxkey") === -1) {
       fxKeyboard._toggleOpen(false);
-      fxKeyboard.lastPress = "null";
     }
+    fxKeyboard.lastPress = "null";
   }
 }
 
