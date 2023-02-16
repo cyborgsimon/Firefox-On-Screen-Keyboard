@@ -30,7 +30,6 @@ function storedSetup(settings) {
   var zoomValue = window.devicePixelRatio;
   fxKeyboard.settings.scale = settings.scaleValue / 100;
   fxKeyboard.settings.numpadState = settings.numpadState;
-  console.log(fxKeyboard.settings.scale);
 }
 
 function onError(error) {
@@ -65,6 +64,7 @@ var FxKeyboardEn = JSON.stringify({
   defaultFlex: "10",
   main: [
     [
+      [{ label: "", flex: 1 }],
       ["`", "~"],
       ["1", "!"],
       ["2", "@"],
@@ -78,10 +78,11 @@ var FxKeyboardEn = JSON.stringify({
       ["0", ")"],
       ["-", "_"],
       ["=", "+"],
-      [{ label: "←", flex: 10, special: 8, type: "repeat" }], // backspace
+      [{ label: "←", flex: 1, special: 8, type: "repeat" }], // backspace
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "↹", flex: 1, string: "\\t" }], // TAB
+      [{ label: "", flex: 1 }],
       ["q", "Q"],
       ["w", "W"],
       ["e", "E"],
@@ -94,10 +95,10 @@ var FxKeyboardEn = JSON.stringify({
       ["p", "P"],
       ["&#91;", "&#123;"],
       ["&#93;", "&#125;"],
-      ["\\\\", "|", "1"],
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "@", flex: 10, special: 50, string: "@" }],
+      [{ label: "⇪", flex: 1, special: "shiftlock" }],
       ["a", "A"],
       ["s", "S"],
       ["d", "D"],
@@ -109,10 +110,10 @@ var FxKeyboardEn = JSON.stringify({
       ["l", "L"],
       [";", ":"],
       ["'", '"'],
-      [{ label: "⏎", flex: 15, special: 13 }],
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "⇧", flex: 10, special: "shift" }],
+      [{ label: "⇧", flex: 1, special: "shift" }],
       ["z", "Z"],
       ["x", "X"],
       ["c", "C"],
@@ -123,10 +124,12 @@ var FxKeyboardEn = JSON.stringify({
       [",", "<"],
       [".", ">"],
       ["/", "?"],
-      [{ label: "Close", flex: 10, special: "closeFX" }],
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: " ", flex: 5, special: 32 }], // space
+      [{ label: " ", flex: 1, special: 32 }], // space
+      [{ label: "✓", special: "applyFX" }],
+      [{ label: "✖", special: "cancelFX" }],
     ],
   ],
 });
@@ -140,7 +143,7 @@ FxKeyNumpadEn = JSON.stringify({
     [["4"], ["5"], ["6"]],
     [["7"], ["8"], ["9"]],
     [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
-    [[{ label: "Close", special: "closeFX", flex: 1 }]],
+    [[{ label: "✖", special: "cancelFX", flex: 1 }]],
   ],
 });
 
@@ -150,6 +153,7 @@ var FxKeyboardDe = JSON.stringify({
   defaultFlex: "10",
   main: [
     [
+      [{ label: "", flex: 1 }],
       ["1", "!"],
       ["2", '"'],
       ["3", "§"],
@@ -163,10 +167,11 @@ var FxKeyboardDe = JSON.stringify({
       ["ß", "?"],
       ["&#91;", "&#123;"],
       ["&#93;", "&#125;"],
-      [{ label: "←", flex: 10, special: 8, type: "repeat" }], // backspace
+      [{ label: "←", flex: 1, special: 8, type: "repeat" }], // backspace
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "↹", flex: 1, string: "\\t" }], // TAB
+      [{ label: "", flex: 1 }],
       ["q", "Q"],
       ["w", "W"],
       ["e", "E"],
@@ -179,10 +184,10 @@ var FxKeyboardDe = JSON.stringify({
       ["p", "P"],
       ["ü", "Ü"],
       ["+", "*"],
-      ["\\\\", "|", "1"],
+      [{ label: "", flex: 2 }],
     ],
     [
-      [{ label: "@", flex: 10, special: 50, string: "@" }],
+      [{ label: "⇪", flex: 1, special: "shiftlock" }],
       ["a", "A"],
       ["s", "S"],
       ["d", "D"],
@@ -194,10 +199,10 @@ var FxKeyboardDe = JSON.stringify({
       ["l", "L"],
       ["ö", "Ö"],
       ["ä", "Ä"],
-      [{ label: "⏎", flex: 15, special: 13 }],
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "⇧", flex: 10, special: "shift" }],
+      [{ label: "⇧", flex: 1, special: "shift" }],
       ["y", "Y"],
       ["x", "X"],
       ["c", "C"],
@@ -208,10 +213,12 @@ var FxKeyboardDe = JSON.stringify({
       [",", ";"],
       [".", ":"],
       ["-", "_"],
-      [{ label: "Schließen", flex: 10, special: "closeFX" }],
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: " ", flex: 5, special: 32 }], // space
+      [{ label: " ", flex: 1, special: 32 }], // space
+      [{ label: "✓", special: "applyFX" }],
+      [{ label: "✖", special: "cancelFX" }],
     ],
   ],
 });
@@ -225,7 +232,7 @@ FxKeyNumpadDe = JSON.stringify({
     [["4"], ["5"], ["6"]],
     [["7"], ["8"], ["9"]],
     [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
-    [[{ label: "Schließen", special: "closeFX", flex: 1 }]],
+    [[{ label: "✖", special: "cancelFX", flex: 1 }]],
   ],
 });
 
@@ -235,6 +242,7 @@ var FxKeyboardFr = JSON.stringify({
   defaultFlex: "10",
   main: [
     [
+      [{ label: "", flex: 1 }],
       ["²", "§"],
       ["1", "&"],
       ["2", "é"],
@@ -248,10 +256,11 @@ var FxKeyboardFr = JSON.stringify({
       ["0", "à"],
       ["°", ")"],
       ["=", "+"],
-      [{ label: "←", flex: 10, special: 8, type: "repeat" }], // backspace
+      [{ label: "←", flex: 1, special: 8, type: "repeat" }], // backspace
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "↹", flex: 1, string: "\\t" }], // TAB
+      [{ label: "", flex: 1 }],
       ["a", "A"],
       ["z", "Z"],
       ["e", "E"],
@@ -264,10 +273,10 @@ var FxKeyboardFr = JSON.stringify({
       ["p", "P"],
       ["&#91;", "&#123;"],
       ["&#93;", "&#125;"],
-      ["\\\\", "|", "1"],
+      [{ label: "", flex: 2 }],
     ],
     [
-      [{ label: "@", flex: 10, special: 50, string: "@" }],
+      [{ label: "⇪", flex: 1, special: "shiftlock" }],
       ["q", "Q"],
       ["s", "S"],
       ["d", "D"],
@@ -280,10 +289,10 @@ var FxKeyboardFr = JSON.stringify({
       ["m", "M"],
       ["ù", "%"],
       ["*", "µ"],
-      [{ label: "⏎", flex: 15, special: 13 }],
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "⇧", flex: 10, special: "shift" }],
+      [{ label: "⇧", flex: 1, special: "shift" }],
       ["w", "W"],
       ["x", "X"],
       ["c", "C"],
@@ -294,10 +303,12 @@ var FxKeyboardFr = JSON.stringify({
       [";", "."],
       [":", "/"],
       ["!", "#"],
-      [{ label: "Fermer", flex: 10, special: "closeFX" }],
+      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: " ", flex: 5, special: 32 }], // space
+      [{ label: "✓", special: "applyFX" }],
+      [{ label: "✖", special: "cancelFX" }],
+      [{ label: " ", flex: 1, special: 32 }], // space
     ],
   ],
 });
@@ -311,7 +322,7 @@ FxKeyNumpadFr = JSON.stringify({
     [["4"], ["5"], ["6"]],
     [["7"], ["8"], ["9"]],
     [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
-    [[{ label: "Fermer", special: "closeFX", flex: 1 }]],
+    [[{ label: "✖", special: "cancelFX", flex: 1 }]],
   ],
 });
 
@@ -357,7 +368,7 @@ var FxKeyMap = JSON.stringify({
   "{": 219,
   "}": 221,
   "]": 221,
-  "\\\\": 220,
+  '"': 220,
   "|": 220,
   a: 65,
   s: 83,
@@ -433,8 +444,6 @@ var fxKeyboard = {
             command: {
               input: fxKeyboard.activeOSK,
               state: open,
-              elementYTop: this.focusElementYTop,
-              elementYBottom: this.focusElementYBottom,
             },
             xpath: this.hierarchy.pathInMaster,
             uri: this.settings.startingURL,
@@ -479,30 +488,6 @@ var fxKeyboard = {
             chNodes.style.borderRadius = 5 * this.settings.scale + "px";
           }
         }
-        // if (
-        //   (kb.getBoundingClientRect().top !== 0
-        //     ? this.focusElementYBottom
-        //     : this.focusElementYTop) +
-        //     window.scrollY >
-        //   (kb.getBoundingClientRect().top !== 0
-        //     ? kb.getBoundingClientRect().top
-        //     : kb.getBoundingClientRect().bottom) +
-        //     window.scrollY
-        // ) {
-        //   kb.style.top = 0;
-        // } else if (
-        //   (kb.getBoundingClientRect().bottom !== window.innerHeight
-        //     ? kb.getBoundingClientRect().bottom
-        //     : kb.getBoundingClientRect().top) +
-        //     window.scrollY >
-        //   (kb.getBoundingClientRect().bottom !== window.innerHeight
-        //     ? this.focusElementYTop
-        //     : this.focusElementYBottom) +
-        //     window.scrollY
-        // ) {
-        //   kb.style.bottom = 0;
-        //   kb.style.top = null;
-        // }
       }
 
       if (document.getElementById("ptext")) {
@@ -531,57 +516,61 @@ var fxKeyboard = {
   },
 
   /*
-     states:
-     0 - normal
-     1 - shift on
-     2 - shift lock
-     */
+      states:
+      0 - normal
+      1 - shift on
+      2 - shift lock
+      */
   state: 0,
-  lastPress: "null",
+  lastPress: null,
   keepOpen: false,
   focusElement: null,
-  focusElementYBottom: 0,
-  focusElementYTop: 0,
   inputTypes: { numpad: "fxnumpad", keyboard: "fxkeyboard" },
   previousOSK: null,
+  oldValue: null,
   activeOSK: null,
 
   _setSpecialFunctions: function (keyD, obj) {
-    keyD.onmousedown = function () {
-      keyD.style.backgroundColor = "rgb(150,150,150)";
-    };
-    keyD.onmouseenter = function () {
+    if (obj.label !== "") {
+      keyD.onmousedown = function () {
+        keyD.style.backgroundColor = "rgb(150,150,150)";
+      };
+      keyD.onmouseenter = function () {
+        keyD.style.backgroundColor = "rgb(200,200,200)";
+      };
+      keyD.onmouseout = function () {
+        keyD.style.backgroundColor = "rgb(255,255,255)";
+      };
+    }
+    if (obj.label === "") {
       keyD.style.backgroundColor = "rgb(200,200,200)";
-    };
-    keyD.onmouseout = function () {
-      keyD.style.backgroundColor = "rgb(255,255,255)";
-    };
-
-    if (obj.label === "⇧") {
+    } else if (obj.label === "⇧") {
       keyD.onmouseup = function () {
         if (fxKeyboard.state === 0) {
           keyD.style.backgroundColor = "rgb(200,200,200)";
           keyD.onmouseout = function () {
             keyD.style.backgroundColor = "rgb(200,200,200)";
           };
-          fxKeyboard.state++;
-        } else if (fxKeyboard.state === 1) {
-          keyD.onmouseout = function () {
-            keyD.style.backgroundColor = "rgb(150,150,150)";
-          };
-          keyD.style.backgroundColor = "rgb(150,150,150)";
-          fxKeyboard.state++;
-        } else if (fxKeyboard.state === 2) {
+          fxKeyboard.state = 1;
+        } else {
           fxKeyboard.state = 0;
         }
         fxKeyboard._setShift();
       };
-    } else if (obj.label === "←") {
+    } else if (obj.label === "⇪") {
       keyD.onmouseup = function () {
-        fxKeyboard._sendKey(obj.label);
-        keyD.style.backgroundColor = "rgb(255,255,255)";
+        if (fxKeyboard.state === 0 || fxKeyboard.state === 1) {
+          keyD.style.backgroundColor = "rgb(200,200,200)";
+          keyD.onmouseout = function () {
+            keyD.style.backgroundColor = "rgb(200,200,200)";
+          };
+          fxKeyboard.state = 2;
+        } else {
+          fxKeyboard.state = 0;
+        }
+        fxKeyboard._setShiftLock();
       };
-    } else if (obj.label in { "@": "" }) {
+    } else if (obj.label === "←") {
       keyD.onmouseup = function () {
         fxKeyboard._sendKey(obj.label);
         keyD.style.backgroundColor = "rgb(255,255,255)";
@@ -591,15 +580,26 @@ var fxKeyboard = {
         fxKeyboard._sendKey(" ");
         keyD.style.backgroundColor = "rgb(255,255,255)";
       };
-    } else if (
-      obj.label === "Close" ||
-      obj.label === "Schließen" ||
-      obj.label === "Fermer"
-    ) {
+    } else if (obj.label === "✓") {
+      keyD.style.backgroundColor = "rgb(0,255,0)";
       keyD.onmouseup = function () {
         fxKeyboard._toggleOpen(false);
         keyD.style.backgroundColor = "rgb(255,255,255)";
-        fxKeyboard.lastPress = "close";
+        fxKeyboard.lastPress = "apply";
+      };
+      keyD.onmouseout = function () {
+        keyD.style.backgroundColor = "rgb(0,255,0)";
+      };
+    } else if (obj.label === "✖") {
+      keyD.style.backgroundColor = "rgb(255,0,0)";
+      keyD.onmouseup = function () {
+        fxKeyboard.focusElement.value = fxKeyboard.oldValue;
+        fxKeyboard._toggleOpen(false);
+        keyD.style.backgroundColor = "rgb(255,255,255)";
+        fxKeyboard.lastPress = "cancel";
+      };
+      keyD.onmouseout = function () {
+        keyD.style.backgroundColor = "rgb(255,0,0)";
       };
     } else if (obj.label === "⏎") {
       keyD.onmouseup = function () {
@@ -607,13 +607,11 @@ var fxKeyboard = {
         document.activeElement.form.submit();
         fxKeyboard._sendKey(obj.label);
       };
-    } else if (obj.label === "↹") {
+    } else if (obj.label === "↑") {
       keyD.onmouseup = function () {
         keyD.style.backgroundColor = "rgb(255,255,255)";
         var focussableElements =
           'input:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
-        console.log(document.activeElement);
-        console.log(document.activeElement.form);
         if (document.activeElement && document.activeElement.form) {
           var focussable = Array.prototype.filter.call(
             document.activeElement.form.querySelectorAll(focussableElements),
@@ -625,18 +623,42 @@ var fxKeyboard = {
               );
             }
           );
-          console.log(focussable);
+          var index = focussable.indexOf(document.activeElement);
+          focussable[index - 1 >= focussable.length ? 0 : index - 1].focus();
+        }
+      };
+    } else if (obj.label === "↓") {
+      keyD.onmouseup = function () {
+        keyD.style.backgroundColor = "rgb(255,255,255)";
+        var focussableElements =
+          'input:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
+        if (document.activeElement && document.activeElement.form) {
+          var focussable = Array.prototype.filter.call(
+            document.activeElement.form.querySelectorAll(focussableElements),
+            function (element) {
+              return (
+                element.offsetWidth > 0 ||
+                element.offsetHeight > 0 ||
+                element === document.activeElement
+              );
+            }
+          );
           var index = focussable.indexOf(document.activeElement);
           focussable[index + 1 >= focussable.length ? 0 : index + 1].focus();
         }
       };
+    } else {
+      if (fxKeyboard.state === 1) {
+        fxKeyboard.state = 0;
+        fxKeyboard._setShift();
+      }
     }
 
     return keyD;
   },
 
   _setShift: function () {
-    if (this.state > 0) {
+    if (this.state == 1) {
       var secElements = document.getElementsByClassName("fxkey-secondary");
       var priElements = document.getElementsByClassName("fxkey-primary");
       for (var i = 0; secElements.length > i; i++) {
@@ -645,10 +667,37 @@ var fxKeyboard = {
       for (var i = 0; priElements.length > i; i++) {
         priElements[i].style.display = "none";
       }
-    } else if (this.state === 0) {
+    } else {
       var secElements = document.getElementsByClassName("fxkey-secondary");
       var priElements = document.getElementsByClassName("fxkey-primary");
       var shiftK = document.getElementById("fxkey-shift");
+      shiftK.style.backgroundColor = "rgb(255,255,255)";
+      shiftK.onmouseout = function () {
+        shiftK.style.backgroundColor = "rgb(255,255,255)";
+      };
+      for (var i = 0; secElements.length > i; i++) {
+        secElements[i].style.display = "none";
+      }
+      for (var i = 0; priElements.length > i; i++) {
+        priElements[i].style.display = "flex";
+      }
+    }
+  },
+
+  _setShiftLock: function () {
+    if (this.state == 2) {
+      var secElements = document.getElementsByClassName("fxkey-secondary");
+      var priElements = document.getElementsByClassName("fxkey-primary");
+      for (var i = 0; secElements.length > i; i++) {
+        secElements[i].style.display = "flex";
+      }
+      for (var i = 0; priElements.length > i; i++) {
+        priElements[i].style.display = "none";
+      }
+    } else {
+      var secElements = document.getElementsByClassName("fxkey-secondary");
+      var priElements = document.getElementsByClassName("fxkey-primary");
+      var shiftK = document.getElementById("fxkey-shiftlock");
       shiftK.style.backgroundColor = "rgb(255,255,255)";
       shiftK.onmouseout = function () {
         shiftK.style.backgroundColor = "rgb(255,255,255)";
@@ -805,7 +854,6 @@ var fxKeyboard = {
     key.style.flexGrow = flex;
     key.style.backgroundColor = "rgb(255,255,255)";
     key.innerHTML = char;
-    console.log("FlexGrow of standard key is: " + key.style.flexGrow);
     key.onmouseenter = function () {
       key.style.backgroundColor = "rgb(200,200,200)";
     };
@@ -839,7 +887,11 @@ var fxKeyboard = {
     key.style.justifyContent = "center";
     key.style.cursor = "pointer";
     key.style.flexGrow = obj.flex;
-    key.id = "fxkey-" + obj.label.toLowerCase();
+    if (obj.special !== "") {
+      key.id = "fxkey-" + obj.special;
+    } else {
+      key.id = "fxkey-" + obj.label.toLowerCase();
+    }
     key.style.borderRadius = 5 * this.settings.scale + "px";
     key.style.backgroundColor = "rgb(255,255,255)";
     key = this._setSpecialFunctions(key, obj);
@@ -899,12 +951,6 @@ var fxKeyboard = {
     keyb.id = inputType;
     keyb.style.zIndex = "9999999";
     keyb.style.display = "none"; //hidden on insert.
-    console.log(
-      "border radius: " +
-        keyb.style.borderRadius +
-        " padding size: " +
-        keyb.style.padding
-    );
     if (
       !document.getElementById(inputType) ||
       this.settings.preScale !== this.settings.scale
@@ -1017,7 +1063,6 @@ browser.runtime.onMessage.addListener(function begin(message) {
       document.getElementById("fxkeyboard") === null &&
       fxKeyboard.hierarchy.isMaster
     ) {
-      console.log("Inserting OSK");
       fxKeyboard.activeOSK = fxKeyboard.inputTypes.keyboard;
       fxKeyboard.insertKeyboard(fxKeyboard.inputTypes.keyboard);
     }
@@ -1061,12 +1106,6 @@ window.addEventListener(
             XPathResult.FIRST_ORDERED_NODE_TYPE,
             null
           ).singleNodeValue;
-          fxKeyboard.focusElementYTop =
-            msg.command.elementYTop +
-            fxKeyboard.hierarchy.slavedIFrame.getBoundingClientRect().top;
-          fxKeyboard.focusElementYBottom =
-            msg.command.elementYBottom +
-            fxKeyboard.hierarchy.slavedIFrame.getBoundingClientRect().top;
           if (fxKeyboard.hierarchy.slavedIFrame == null) {
             fxKeyboard.hierarchy.slavedIFrame = document.querySelector(
               'iframe[src="' + msg.uri + '"]'
@@ -1144,7 +1183,7 @@ var textInputTypes = {
 };
 
 var integerInputTypes = {
-  text: "numeric",
+  // text: "numeric",
   number: "",
   range: "",
   tel: "",
@@ -1158,36 +1197,40 @@ function oskAction(clicked) {
       ? document.activeElement.type in textInputTypes ||
         document.activeElements.type in integerInputTypes
       : document.activeElement.type in textInputTypes) &&
-    fxKeyboard.lastPress !== "close" &&
+    fxKeyboard.lastPress !== "cancel" &&
+    fxKeyboard.lastPress !== "apply" &&
     fxKeyboard.settings.numpadState !== "always"
   ) {
-    fxKeyboard.focusElement = document.activeElement;
-    fxKeyboard.focusElementYTop =
-      document.activeElement.getBoundingClientRect().top;
-    fxKeyboard.focusElementYBottom =
-      document.activeElement.getBoundingClientRect().bottom;
+    if(fxKeyboard.focusElement !== document.activeElement)
+    {
+      fxKeyboard.focusElement = document.activeElement;
+      fxKeyboard.oldValue = fxKeyboard.focusElement.value;
+    }
     fxKeyboard.activeOSK = fxKeyboard.inputTypes.keyboard;
     fxKeyboard._toggleOpen(true);
   } else if (
     (fxKeyboard.settings.numpadState === "always"
-      ? document.activeElement.type in textInputTypes ||
-        document.activeElements.type in integerInputTypes
-      : document.activeElement.type in integerInputTypes) &&
-    fxKeyboard.lastPress !== "close" &&
+    ? document.activeElement.type in textInputTypes ||
+    document.activeElements.type in integerInputTypes
+    : document.activeElement.type in integerInputTypes) &&
+    fxKeyboard.lastPress !== "cancel" &&
+    fxKeyboard.lastPress !== "apply" &&
     fxKeyboard.settings.numpadState !== "disabled"
-  ) {
-    fxKeyboard.focusElement = document.activeElement;
-    fxKeyboard.focusElementYTop =
-      document.activeElement.getBoundingClientRect().top;
-    fxKeyboard.focusElementYBottom =
-      document.activeElement.getBoundingClientRect().bottom;
+    ) {
+    if(fxKeyboard.focusElement !== document.activeElement)
+    {
+      fxKeyboard.focusElement = document.activeElement;
+      fxKeyboard.oldValue = fxKeyboard.focusElement.value;
+    }
     fxKeyboard.activeOSK = fxKeyboard.inputTypes.numpad;
     fxKeyboard._toggleOpen(true);
   } else {
     if (clicked.target.id.indexOf("fxkey") === -1) {
+      fxKeyboard.focusElement.value = fxKeyboard.oldValue;
       fxKeyboard._toggleOpen(false);
     }
-    fxKeyboard.lastPress = "null";
+    fxKeyboard.oldValue = null;
+    fxKeyboard.lastPress = null;
   }
 }
 
