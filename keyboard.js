@@ -64,7 +64,6 @@ var FxKeyboardEn = JSON.stringify({
   defaultFlex: "10",
   main: [
     [
-      [{ label: "", flex: 1 }],
       ["`", "~"],
       ["1", "!"],
       ["2", "@"],
@@ -79,7 +78,6 @@ var FxKeyboardEn = JSON.stringify({
       ["-", "_"],
       ["=", "+"],
       [{ label: "←", flex: 1, special: 8, type: "repeat" }], // backspace
-      [{ label: "", flex: 1 }],
     ],
     [
       [{ label: "", flex: 1 }],
@@ -93,9 +91,9 @@ var FxKeyboardEn = JSON.stringify({
       ["i", "I"],
       ["o", "O"],
       ["p", "P"],
-      ["&#91;", "&#123;"],
-      ["&#93;", "&#125;"],
-      [{ label: "", flex: 1 }],
+      ["[", "{"],
+      ["]", "}"],
+      ["\\", "|"],
     ],
     [
       [{ label: "⇪", flex: 1, special: "shiftlock" }],
@@ -110,7 +108,7 @@ var FxKeyboardEn = JSON.stringify({
       ["l", "L"],
       [";", ":"],
       ["'", '"'],
-      [{ label: "", flex: 1 }],
+      [{ label: "" }],
     ],
     [
       [{ label: "⇧", flex: 1, special: "shift" }],
@@ -127,7 +125,9 @@ var FxKeyboardEn = JSON.stringify({
       [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: " ", flex: 1, special: 32 }], // space
+      [{ label: "" }],
+      [{ label: " ", flex: 1 }], // space
+      [{ label: "" }],
       [{ label: "✓", special: "applyFX" }],
       [{ label: "✖", special: "cancelFX" }],
     ],
@@ -139,11 +139,21 @@ FxKeyNumpadEn = JSON.stringify({
   locale: "en",
   defaultFlex: "10",
   main: [
-    [["1"], ["2"], ["3"]],
-    [["4"], ["5"], ["6"]],
-    [["7"], ["8"], ["9"]],
-    [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
-    [[{ label: "✖", special: "cancelFX", flex: 1 }]],
+    [
+      ["A"],
+      ["B"],
+      ["C"],
+      [{ label: "←", flex: 1, special: 8, type: "repeat" }],
+    ],
+    [["D"], ["E"], ["F"], [{ label: "", flex: 1 }]],
+    [["1"], ["2"], ["3"], [{ label: "", flex: 1 }]],
+    [["4"], ["5"], ["6"], [{ label: "", flex: 1 }]],
+    [["7"], ["8"], ["9"], [{ label: "", flex: 1 }]],
+    [["0"], ["."], ["-"], [{ label: "", flex: 1 }]],
+    [
+      [{ label: "✓", flex: 1, special: "applyFX" }],
+      [{ label: "✖", flex: 1, special: "cancelFX" }],
+    ],
   ],
 });
 
@@ -153,7 +163,7 @@ var FxKeyboardDe = JSON.stringify({
   defaultFlex: "10",
   main: [
     [
-      [{ label: "", flex: 1 }],
+      ["^", "°"],
       ["1", "!"],
       ["2", '"'],
       ["3", "§"],
@@ -165,10 +175,7 @@ var FxKeyboardDe = JSON.stringify({
       ["9", ")"],
       ["0", "="],
       ["ß", "?"],
-      ["&#91;", "&#123;"],
-      ["&#93;", "&#125;"],
       [{ label: "←", flex: 1, special: 8, type: "repeat" }], // backspace
-      [{ label: "", flex: 1 }],
     ],
     [
       [{ label: "", flex: 1 }],
@@ -184,7 +191,6 @@ var FxKeyboardDe = JSON.stringify({
       ["p", "P"],
       ["ü", "Ü"],
       ["+", "*"],
-      [{ label: "", flex: 2 }],
     ],
     [
       [{ label: "⇪", flex: 1, special: "shiftlock" }],
@@ -199,10 +205,11 @@ var FxKeyboardDe = JSON.stringify({
       ["l", "L"],
       ["ö", "Ö"],
       ["ä", "Ä"],
-      [{ label: "", flex: 1 }],
+      ["'", "#"],
     ],
     [
       [{ label: "⇧", flex: 1, special: "shift" }],
+      ["<", ">"],
       ["y", "Y"],
       ["x", "X"],
       ["c", "C"],
@@ -213,10 +220,12 @@ var FxKeyboardDe = JSON.stringify({
       [",", ";"],
       [".", ":"],
       ["-", "_"],
-      [{ label: "", flex: 1 }],
+      [{ label: "" }],
     ],
     [
-      [{ label: " ", flex: 1, special: 32 }], // space
+      [{ label: "" }],
+      [{ label: " ", flex: 1 }], // space
+      [{ label: "" }],
       [{ label: "✓", special: "applyFX" }],
       [{ label: "✖", special: "cancelFX" }],
     ],
@@ -228,11 +237,21 @@ FxKeyNumpadDe = JSON.stringify({
   locale: "de",
   defaultFlex: "10",
   main: [
-    [["1"], ["2"], ["3"]],
-    [["4"], ["5"], ["6"]],
-    [["7"], ["8"], ["9"]],
-    [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
-    [[{ label: "✖", special: "cancelFX", flex: 1 }]],
+    [
+      ["A"],
+      ["B"],
+      ["C"],
+      [{ label: "←", flex: 1, special: 8, type: "repeat" }],
+    ],
+    [["D"], ["E"], ["F"], [{ label: "", flex: 1 }]],
+    [["1"], ["2"], ["3"], [{ label: "", flex: 1 }]],
+    [["4"], ["5"], ["6"], [{ label: "", flex: 1 }]],
+    [["7"], ["8"], ["9"], [{ label: "", flex: 1 }]],
+    [["0"], [","], ["-"], [{ label: "", flex: 1 }]],
+    [
+      [{ label: "✓", flex: 1, special: "applyFX" }],
+      [{ label: "✖", flex: 1, special: "cancelFX" }],
+    ],
   ],
 });
 
@@ -242,7 +261,6 @@ var FxKeyboardFr = JSON.stringify({
   defaultFlex: "10",
   main: [
     [
-      [{ label: "", flex: 1 }],
       ["²", "§"],
       ["1", "&"],
       ["2", "é"],
@@ -257,10 +275,9 @@ var FxKeyboardFr = JSON.stringify({
       ["°", ")"],
       ["=", "+"],
       [{ label: "←", flex: 1, special: 8, type: "repeat" }], // backspace
-      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "", flex: 1 }],
+      [{ label: "" }],
       ["a", "A"],
       ["z", "Z"],
       ["e", "E"],
@@ -271,9 +288,9 @@ var FxKeyboardFr = JSON.stringify({
       ["i", "I"],
       ["o", "O"],
       ["p", "P"],
-      ["&#91;", "&#123;"],
-      ["&#93;", "&#125;"],
-      [{ label: "", flex: 2 }],
+      ["^", "¨"],
+      ["$", "£"],
+      [{ label: "" }],
     ],
     [
       [{ label: "⇪", flex: 1, special: "shiftlock" }],
@@ -289,10 +306,10 @@ var FxKeyboardFr = JSON.stringify({
       ["m", "M"],
       ["ù", "%"],
       ["*", "µ"],
-      [{ label: "", flex: 1 }],
     ],
     [
-      [{ label: "⇧", flex: 1, special: "shift" }],
+      [{ label: "⇧", flex: 2, special: "shift" }],
+      ["<", ">"],
       ["w", "W"],
       ["x", "X"],
       ["c", "C"],
@@ -302,13 +319,15 @@ var FxKeyboardFr = JSON.stringify({
       [",", "?"],
       [";", "."],
       [":", "/"],
-      ["!", "#"],
-      [{ label: "", flex: 1 }],
+      ["!", "§"],
+      [{ label: "" }],
     ],
     [
+      [{ label: "" }],
+      [{ label: " ", flex: 1 }], // space
+      [{ label: "" }],
       [{ label: "✓", special: "applyFX" }],
       [{ label: "✖", special: "cancelFX" }],
-      [{ label: " ", flex: 1, special: 32 }], // space
     ],
   ],
 });
@@ -318,85 +337,22 @@ FxKeyNumpadFr = JSON.stringify({
   locale: "fr",
   defaultFlex: "10",
   main: [
-    [["1"], ["2"], ["3"]],
-    [["4"], ["5"], ["6"]],
-    [["7"], ["8"], ["9"]],
-    [["0"], [{ label: "←", special: 8, flex: 1, type: "repeat" }]],
-    [[{ label: "✖", special: "cancelFX", flex: 1 }]],
+    [
+      ["A"],
+      ["B"],
+      ["C"],
+      [{ label: "←", flex: 1, special: 8, type: "repeat" }],
+    ],
+    [["D"], ["E"], ["F"], [{ label: "", flex: 1 }]],
+    [["1"], ["2"], ["3"], [{ label: "", flex: 1 }]],
+    [["4"], ["5"], ["6"], [{ label: "", flex: 1 }]],
+    [["7"], ["8"], ["9"], [{ label: "", flex: 1 }]],
+    [["0"], [","], ["-"], [{ label: "", flex: 1 }]],
+    [
+      [{ label: "✓", flex: 1, special: "applyFX" }],
+      [{ label: "✖", flex: 1, special: "cancelFX" }],
+    ],
   ],
-});
-
-var FxKeyMap = JSON.stringify({
-  "`": 192,
-  "~": 192,
-  1: 49,
-  "!": 49,
-  2: 50,
-  "@": 50,
-  3: 51,
-  "#": 51,
-  4: 52,
-  $: 52,
-  5: 53,
-  "%": 53,
-  6: 54,
-  "^": 54,
-  7: 55,
-  "&": 55,
-  8: 56,
-  "*": 56,
-  9: 57,
-  "(": 57,
-  0: 48,
-  ")": 48,
-  "-": 173,
-  _: 173,
-  "=": 61,
-  "+": 61,
-  "←": 8,
-  q: 81,
-  w: 87,
-  e: 69,
-  r: 82,
-  t: 84,
-  y: 89,
-  u: 85,
-  i: 73,
-  o: 79,
-  p: 80,
-  "[": 219,
-  "{": 219,
-  "}": 221,
-  "]": 221,
-  '"': 220,
-  "|": 220,
-  a: 65,
-  s: 83,
-  d: 68,
-  f: 70,
-  g: 71,
-  h: 72,
-  j: 74,
-  k: 75,
-  l: 76,
-  ";": 59,
-  ":": 59,
-  "'": 222,
-  '"': 222,
-  "⏎": 13,
-  z: 90,
-  x: 88,
-  c: 67,
-  v: 86,
-  b: 66,
-  n: 78,
-  m: 77,
-  ",": 188,
-  "<": 188,
-  ".": 190,
-  ">": 190,
-  "/": 191,
-  "?": 191,
 });
 
 var fxKeyboard = {
@@ -416,7 +372,7 @@ var fxKeyboard = {
     np_max_width: 220,
     np_max_height: 375,
     key_height: window.innerWidth * 0.05,
-    input_height: window.innerWidth * 0.045,
+    input_height: window.innerWidth * 0.04,
   },
 
   hierarchy: {
@@ -464,10 +420,8 @@ var fxKeyboard = {
           kb.style.display = "block";
           this.previousOSK = this.activeOSK;
         }
-        kb.style.width =
+        kb.style.maxWidth =
           this.getMaxWidth(this.activeOSK) * this.settings.scale + "px";
-        // kb.style.height =
-        // this.getMaxHeight(this.activeOSK) * this.settings.scale + "px";
         kb.style.padding = this.settings.padding * this.settings.scale + "px";
         kb.style.fontFamily = "arial,sans-serif";
         kb.style.color = "#000000";
@@ -477,8 +431,8 @@ var fxKeyboard = {
           for (const chNodes of element.childNodes) {
             if (chNodes.id === "ptext") {
               chNodes.style.width = "100%";
-              // chNodes.style.height =
-              //   this.settings.input_height * this.settings.scale + "px";
+              chNodes.style.height =
+                this.settings.input_height * this.settings.scale + "px";
             } else {
               chNodes.style.width =
                 this.settings.key_height * this.settings.scale + "px";
@@ -491,7 +445,7 @@ var fxKeyboard = {
       }
 
       if (document.getElementById("ptext")) {
-        document.getElementById("ptext").innerHTML =
+        document.getElementById("ptext").textContent =
           document.activeElement.value;
       }
     } else {
@@ -732,40 +686,11 @@ var fxKeyboard = {
             -1
           );
           break;
-        case "⏎":
-          fxKeyboard.focusElement.dispatchEvent(
-            new KeyboardEvent("beforeinput", {
-              key: character,
-              shiftKey: false,
-              keyCode: JSON.parse(FxKeyMap)[character],
-            })
-          );
-          fxKeyboard.focusElement.dispatchEvent(
-            new KeyboardEvent("keydown", {
-              key: character,
-              shiftKey: false,
-              code: character,
-              keyCode: JSON.parse(FxKeyMap)[character],
-            })
-          );
-          fxKeyboard.focusElement.dispatchEvent(
-            new KeyboardEvent("keyup", {
-              key: character,
-              shiftKey: false,
-              code: character,
-              keyCode: JSON.parse(FxKeyMap)[character],
-            })
-          );
-          if (fxKeyboard.focusElement.parentNode.nodeName === "FORM") {
-            fxKeyboard.focusElement.parentNode.submit();
-          }
-          break;
         default:
           fxKeyboard.focusElement.value =
             fxKeyboard.focusElement.value === null
               ? "" + character
               : fxKeyboard.focusElement.value + character;
-
           if (fxKeyboard.state === 1) {
             fxKeyboard.state = 0;
             fxKeyboard._setShift();
@@ -809,7 +734,7 @@ var fxKeyboard = {
     key.style.borderRadius = 5 * this.settings.scale + "px";
     key.style.cursor = "pointer";
     key.style.backgroundColor = "rgb(255,255,255)";
-    key.innerHTML = char;
+    key.textContent = char;
     key.onmouseenter = function () {
       key.style.backgroundColor = "rgb(200,200,200)";
     };
@@ -853,7 +778,7 @@ var fxKeyboard = {
     key.style.cursor = "pointer";
     key.style.flexGrow = flex;
     key.style.backgroundColor = "rgb(255,255,255)";
-    key.innerHTML = char;
+    key.textContent = char;
     key.onmouseenter = function () {
       key.style.backgroundColor = "rgb(200,200,200)";
     };
@@ -895,7 +820,7 @@ var fxKeyboard = {
     key.style.borderRadius = 5 * this.settings.scale + "px";
     key.style.backgroundColor = "rgb(255,255,255)";
     key = this._setSpecialFunctions(key, obj);
-    key.innerHTML = obj.label;
+    key.textContent = obj.label;
     return key;
   },
 
@@ -936,8 +861,7 @@ var fxKeyboard = {
 
     keyb.setAttribute("tabIndex", "-1");
     keyb.style.backgroundColor = "rgba(0,0,0,0.6)";
-    keyb.style.width = max_width * this.settings.scale + "px";
-    keyb.style.height = max_height * this.settings.scale + "px";
+    keyb.style.maxWidth = max_width * this.settings.scale + "px";
     keyb.style.padding = this.settings.padding * this.settings.scale + "px";
     keyb.style.fontFamily = "arial,sans-serif";
     keyb.style.color = "#000000";
@@ -1183,12 +1107,15 @@ var textInputTypes = {
 };
 
 var integerInputTypes = {
-  // text: "numeric",
   number: "",
   range: "",
   tel: "",
   time: "",
   week: "",
+};
+
+var integerInputClasses = {
+  numeric: "",
 };
 
 function oskAction(clicked) {
@@ -1201,8 +1128,7 @@ function oskAction(clicked) {
     fxKeyboard.lastPress !== "apply" &&
     fxKeyboard.settings.numpadState !== "always"
   ) {
-    if(fxKeyboard.focusElement !== document.activeElement)
-    {
+    if (fxKeyboard.focusElement !== document.activeElement) {
       fxKeyboard.focusElement = document.activeElement;
       fxKeyboard.oldValue = fxKeyboard.focusElement.value;
     }
@@ -1210,15 +1136,14 @@ function oskAction(clicked) {
     fxKeyboard._toggleOpen(true);
   } else if (
     (fxKeyboard.settings.numpadState === "always"
-    ? document.activeElement.type in textInputTypes ||
-    document.activeElements.type in integerInputTypes
-    : document.activeElement.type in integerInputTypes) &&
+      ? document.activeElement.type in textInputTypes ||
+        document.activeElements.type in integerInputTypes
+      : document.activeElement.type in integerInputTypes) &&
     fxKeyboard.lastPress !== "cancel" &&
     fxKeyboard.lastPress !== "apply" &&
     fxKeyboard.settings.numpadState !== "disabled"
-    ) {
-    if(fxKeyboard.focusElement !== document.activeElement)
-    {
+  ) {
+    if (fxKeyboard.focusElement !== document.activeElement) {
       fxKeyboard.focusElement = document.activeElement;
       fxKeyboard.oldValue = fxKeyboard.focusElement.value;
     }
@@ -1226,8 +1151,8 @@ function oskAction(clicked) {
     fxKeyboard._toggleOpen(true);
   } else {
     if (clicked.target.id.indexOf("fxkey") === -1) {
-      fxKeyboard.focusElement.value = fxKeyboard.oldValue;
-      fxKeyboard._toggleOpen(false);
+      // fxKeyboard.focusElement.value = fxKeyboard.oldValue;
+      // fxKeyboard._toggleOpen(false);
     }
     fxKeyboard.oldValue = null;
     fxKeyboard.lastPress = null;
