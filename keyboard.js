@@ -946,7 +946,12 @@ var fxKeyboard = {
 };
 
 browser.runtime.onMessage.addListener(function begin(message) {
-  msg = JSON.parse(message);
+  var msg = {};
+  try {
+    msg = JSON.parse(str);
+  } catch (e) {
+    return;
+  }
   if (msg.directive === "insertKeyboard") {
     if (fxKeyboard.hierarchy.isMaster) {
       window.parent.postMessage(
@@ -971,7 +976,13 @@ browser.runtime.onMessage.addListener(function begin(message) {
 window.addEventListener(
   "message",
   function messageReceived(event) {
-    msg = JSON.parse(event.data);
+    console.log(event.data);
+    var msg = {};
+    try {
+      msg = JSON.parse(str);
+    } catch (e) {
+      return;
+    }
     if (msg.directive === "slave") {
       switch (msg.command) {
         case "initialize":
@@ -1029,14 +1040,16 @@ window.addEventListener(
         }
       } else if (msg.command == "ping") {
         var iframe = document.querySelector('iframe[src="' + msg.uri + '"]');
-        iframe.contentWindow.postMessage(
-          JSON.stringify({
-            directive: "slave",
-            command: "initialize",
-            xpath: xpath.getXPathOfElement(iframe),
-          }),
-          "*"
-        );
+        if(iframe !== null) {
+          iframe.contentWindow.postMessage(
+            JSON.stringify({
+              directive: "slave",
+              command: "initialize",
+              xpath: xpath.getXPathOfElement(iframe),
+            }),
+            "*"
+          );
+        }
       }
     }
   },
