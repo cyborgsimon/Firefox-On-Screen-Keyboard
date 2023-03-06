@@ -528,6 +528,7 @@ var fxKeyboard = {
       key.style.backgroundColor = "rgb(0,255,0)";
       key.onmouseup = function () {
         fxKeyboard.oldValue = null;
+        fxKeyboard.focusElement.blur();
         fxKeyboard._toggleOpen(false);
         fxKeyboard.focusElement = null;
         key.style.backgroundColor = "rgb(255,255,255)";
@@ -541,6 +542,7 @@ var fxKeyboard = {
       key.onmouseup = function () {
         fxKeyboard.focusElement.value = fxKeyboard.oldValue;
         fxKeyboard.oldValue = null;
+        fxKeyboard.focusElement.blur();
         fxKeyboard._toggleOpen(false);
         fxKeyboard.focusElement = null;
         key.style.backgroundColor = "rgb(255,255,255)";
