@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "FX OSK improved",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Improved version of the On-Screen Keyboard for FireFox",
   "icons": {
     "48": "icon.svg",
