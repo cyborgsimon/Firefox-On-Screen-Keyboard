@@ -542,6 +542,21 @@ var fxKeyboard = {
       key.onmouseup = function () {
         fxKeyboard.focusElement.value = fxKeyboard.oldValue;
         fxKeyboard.oldValue = null;
+        fxKeyboard.focusElement.dispatchEvent(
+          new Event("keydown", { bubbles: true, cancelable: true })
+        );
+        fxKeyboard.focusElement.dispatchEvent(
+          new Event("keypress", { bubbles: true, cancelable: true })
+        );
+        fxKeyboard.focusElement.dispatchEvent(
+          new Event("keyup", { bubbles: true, cancelable: true })
+        );
+        fxKeyboard.focusElement.dispatchEvent(
+          new Event("input", { bubbles: true, cancelable: true })
+        );
+        fxKeyboard.focusElement.dispatchEvent(
+          new Event("change", { bubbles: true, cancelable: true })
+        );
         fxKeyboard.focusElement.blur();
         fxKeyboard._toggleOpen(false);
         fxKeyboard.focusElement = null;
@@ -1212,8 +1227,6 @@ function oskAction(clicked) {
     fxKeyboard._toggleOpen(true);
   } else {
     if (clicked.target.id.indexOf("fxkey") === -1) {
-      // fxKeyboard.focusElement.value = fxKeyboard.oldValue;
-      // fxKeyboard._toggleOpen(false);
     }
     fxKeyboard.lastPress = null;
   }
