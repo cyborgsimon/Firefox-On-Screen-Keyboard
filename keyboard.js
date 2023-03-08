@@ -488,7 +488,7 @@ var fxKeyboard = {
         }
         fxKeyboard._setShiftLock();
       };
-    } else if (obj.label === "AltGr") {
+    } else if (obj.label === "Alt Gr") {
       key.onmouseup = function () {
         if (fxKeyboard.state !== 3) {
           key.style.backgroundColor = "rgb(200,200,200)";
