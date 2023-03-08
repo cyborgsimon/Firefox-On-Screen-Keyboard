@@ -348,8 +348,7 @@ var fxKeyboard = {
       this.insertKeyboard(this.activeOSK);
     }
     try {
-      var kb = document.getElementById(this.activeOSK).parentElement;
-      kb.style.zIndex = "9999999";
+      var keyboard = document.getElementById(this.activeOSK).parentElement;
     } catch (e) {
       console.log("OSK not found");
       return;
@@ -369,7 +368,7 @@ var fxKeyboard = {
           "*"
         );
       } else {
-        if (kb.style.display !== "block") {
+        if (keyboard.style.display !== "block") {
           if (
             this.previousOSK !== null
               ? this.previousOSK !== this.activeOSK &&
@@ -381,31 +380,9 @@ var fxKeyboard = {
               this.previousOSK
             ).parentElement.style.display = "none";
           }
-          kb.style.display = "block";
+          keyboard.style.display = "block";
           this.previousOSK = this.activeOSK;
         }
-        // kb.style.maxWidth =
-        //   this.getMaxWidth(this.activeOSK) * this.settings.scale + "px";
-        // kb.style.padding = this.settings.padding * this.settings.scale + "px";
-        // kb.style.fontFamily = "arial,sans-serif";
-        // kb.style.color = "#000000";
-        // kb.style.fontSize = 35 * this.settings.scale + "px";
-        // kb.style.borderRadius = 5 * this.settings.scale + "px";
-        // for (const element of kb.childNodeschildNodes) {
-        //   for (const chNodes of element.childNodes) {
-        //     if (chNodes.id === "fxkey-ptext-" + this.activeOSK) {
-        //       chNodes.style.width = "100%";
-        //       chNodes.style.height =
-        //         this.getInputHeight() * this.settings.scale + "px";
-        //     } else {
-        //       chNodes.style.width =
-        //         this.getKeyHeight() * this.settings.scale + "px";
-        //     }
-        //     chNodes.style.margin =
-        //       this.settings.padding * (this.settings.scale / 2) + "px";
-        //     chNodes.style.borderRadius = 5 * this.settings.scale + "px";
-        //   }
-        // }
       }
       if (document.getElementById("fxkey-ptext-" + this.activeOSK)) {
         document.getElementById("fxkey-ptext-" + this.activeOSK).textContent =
@@ -421,15 +398,15 @@ var fxKeyboard = {
           "*"
         );
       } else {
-        kb.style.display = "none";
+        keyboard.style.display = "none";
         this.focusElement = null;
       }
     }
   },
 
   _isOSKOpen: function () {
-    var kb = document.getElementById(this.activeOSK).parentElement;
-    return kb != null ? kb.style.display === "block" : false;
+    var keyboard = document.getElementById(this.activeOSK).parentElement;
+    return keyboard != null ? keyboard.style.display === "block" : false;
   },
 
   /*
@@ -935,6 +912,7 @@ var fxKeyboard = {
         }
       }
       background = document.createElement("div");
+      background.setAttribute("tabIndex", "-1");
       background.style.width = "100%";
       background.style.height = "100%";
       background.style.backgroundColor = "rgba(0,0,0,0.6)";
@@ -968,17 +946,24 @@ var fxKeyboard = {
       divText.style.alignItems = "right";
       divText.style.justifyContent = "center";
       divText.style.overflowX = "hidden";
+      divText.style.width =
+        keys.main[0].length * this.getKeyHeight() * this.settings.scale +
+        (this.settings.padding * this.settings.scale * (keys.main[0].length -
+          3)) +
+        "px";
       divText.style.backgroundColor = "white";
       divText.style.margin =
         this.settings.padding * (this.settings.scale / 2) + "px";
+      divText.style.padding =
+        "0 " + this.settings.padding * this.settings.scale + "px";
       keyboard.appendChild(divText);
 
       var paragraph = document.createElement("p");
       paragraph.id = "fxkey-ptext-" + inputType;
       paragraph.style.display = "flex";
       paragraph.style.alignItems = "center";
-      paragraph.style.justifyContent = "center";
-      paragraph.style.width = "100%";
+      paragraph.style.justifyContent = "right";
+      paragraph.style.width = "inherit";
       paragraph.style.height = this.getKeyHeight() * this.settings.scale + "px";
       paragraph.style.margin = 0;
       divText.appendChild(paragraph);
@@ -1182,15 +1167,15 @@ document.addEventListener("focusin", function load(clicked) {
   oskAction(clicked);
 });
 
-document.addEventListener("focusout", function load(clicked) {
-  if (fxKeyboard.focusElement !== null) {
-    fxKeyboard.oldValue = null;
-    fxKeyboard.focusElement.blur();
-    fxKeyboard._toggleOpen(false);
-    fxKeyboard.focusElement = null;
-    fxKeyboard.lastPress = "apply";
-  }
-});
+// document.addEventListener("focusout", function load(clicked) {
+//   if (fxKeyboard.focusElement !== null) {
+//     fxKeyboard.oldValue = null;
+//     fxKeyboard.focusElement.blur();
+//     fxKeyboard._toggleOpen(false);
+//     fxKeyboard.focusElement = null;
+//     fxKeyboard.lastPress = "apply";
+//   }
+// });
 
 var textInputTypes = {
   input: "",
