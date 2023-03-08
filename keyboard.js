@@ -1167,15 +1167,15 @@ document.addEventListener("focusin", function load(clicked) {
   oskAction(clicked);
 });
 
-// document.addEventListener("focusout", function load(clicked) {
-//   if (fxKeyboard.focusElement !== null) {
-//     fxKeyboard.oldValue = null;
-//     fxKeyboard.focusElement.blur();
-//     fxKeyboard._toggleOpen(false);
-//     fxKeyboard.focusElement = null;
-//     fxKeyboard.lastPress = "apply";
-//   }
-// });
+document.addEventListener("focusout", function load(clicked) {
+  if (fxKeyboard.focusElement !== null) {
+    fxKeyboard.oldValue = null;
+    fxKeyboard.focusElement.blur();
+    fxKeyboard._toggleOpen(false);
+    fxKeyboard.focusElement = null;
+    fxKeyboard.lastPress = "apply";
+  }
+});
 
 var textInputTypes = {
   input: "",
