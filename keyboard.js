@@ -744,26 +744,27 @@ var fxKeyboard = {
         "*"
       );
     } else {
-      switch (character) {
-        case "←":
-          fxKeyboard.focusElement.value = fxKeyboard.focusElement.value.slice(
-            0,
-            -1
-          );
-          break;
-        default:
-          fxKeyboard.focusElement.value =
-            fxKeyboard.focusElement.value === null
-              ? "" + character
-              : fxKeyboard.focusElement.value + character;
-          if (fxKeyboard.state === 1) {
-            fxKeyboard.state = 0;
-            fxKeyboard._setShift();
-          }
-          if (fxKeyboard.state === 3) {
-            fxKeyboard.state = 0;
-            fxKeyboard._setAltGr();
-          }
+      if (character == "←") {
+        fxKeyboard.focusElement.value = fxKeyboard.focusElement.value.slice(
+          0,
+          -1
+        );
+      } else if (
+        typeof fxKeyboard.focusElement.maxLength === "undefined" ||
+        fxKeyboard.focusElement.value.length < fxKeyboard.focusElement.maxLength
+      ) {
+        fxKeyboard.focusElement.value =
+          fxKeyboard.focusElement.value === null
+            ? "" + character
+            : fxKeyboard.focusElement.value + character;
+        if (fxKeyboard.state === 1) {
+          fxKeyboard.state = 0;
+          fxKeyboard._setShift();
+        }
+        if (fxKeyboard.state === 3) {
+          fxKeyboard.state = 0;
+          fxKeyboard._setAltGr();
+        }
       }
 
       fxKeyboard.focusElement.dispatchEvent(
@@ -784,7 +785,7 @@ var fxKeyboard = {
     }
   },
 
-  _buildKey: function (char, level) {
+  _buildKey: function (character, level) {
     var key = document.createElement("div");
     key.style.width = this.getKeyHeight() * this.settings.scale + "px";
     key.style.height = this.getKeyHeight() * this.settings.scale + "px";
@@ -806,11 +807,11 @@ var fxKeyboard = {
     key.style.justifyContent = "center";
     key.style.borderRadius = 5 * this.settings.scale + "px";
     key.style.cursor = "pointer";
-    if (char === "") {
+    if (character === "") {
       key.style.backgroundColor = "rgb(200,200,200)";
     } else {
       key.style.backgroundColor = "rgb(255,255,255)";
-      key.textContent = char;
+      key.textContent = character;
       key.onmouseenter = function () {
         key.style.backgroundColor = "rgb(200,200,200)";
       };
@@ -822,24 +823,24 @@ var fxKeyboard = {
       };
       key.onmouseup = function () {
         key.style.backgroundColor = "rgb(200,200,200)";
-        fxKeyboard._sendKey(char);
+        fxKeyboard._sendKey(character);
       };
     }
     return key;
   },
 
-  _buildSpecialKey: function (obj) {
+  _buildSpecialKey: function (keySettings) {
     var key = document.createElement("div");
-    if (typeof obj.width === "undefined") {
-      obj.width = 1;
+    if (typeof keySettings.width === "undefined") {
+      keySettings.width = 1;
     }
-    if (obj.width > 1) {
+    if (keySettings.width > 1) {
       key.style.width =
-        this.getKeyHeight() * this.settings.scale * obj.width +
+        this.getKeyHeight() * this.settings.scale * keySettings.width +
         2 *
           this.settings.padding *
           (this.settings.scale / 2) *
-          (obj.width - 1) +
+          (keySettings.width - 1) +
         "px";
     } else {
       key.style.width = this.getKeyHeight() * this.settings.scale + "px";
@@ -850,19 +851,19 @@ var fxKeyboard = {
     key.style.alignItems = "center";
     key.style.justifyContent = "center";
     key.style.cursor = "pointer";
-    key.style.flexGrow = obj.flex;
-    if (obj.special !== "") {
-      key.id = "fxkey-" + obj.special;
+    key.style.flexGrow = keySettings.flex;
+    if (keySettings.special !== "") {
+      key.id = "fxkey-" + keySettings.special;
     } else {
-      key.id = "fxkey-" + obj.label.toLowerCase();
+      key.id = "fxkey-" + keySettings.label.toLowerCase();
     }
     key.style.borderRadius = 5 * this.settings.scale + "px";
-    if (typeof obj.label === "undefined") {
+    if (typeof keySettings.label === "undefined") {
       key.style.backgroundColor = "rgb(200,200,200)";
     } else {
       key.style.backgroundColor = "rgb(255,255,255)";
-      key = this._setSpecialFunctions(key, obj);
-      key.textContent = obj.label;
+      key = this._setSpecialFunctions(key, keySettings);
+      key.textContent = keySettings.label;
     }
     return key;
   },
@@ -948,14 +949,15 @@ var fxKeyboard = {
       divText.style.overflowX = "hidden";
       divText.style.width =
         keys.main[0].length * this.getKeyHeight() * this.settings.scale +
-        (this.settings.padding * this.settings.scale * (keys.main[0].length -
-          3)) +
+        this.settings.padding *
+          this.settings.scale *
+          (keys.main[0].length - 1) +
         "px";
       divText.style.backgroundColor = "white";
       divText.style.margin =
         this.settings.padding * (this.settings.scale / 2) + "px";
-      divText.style.padding =
-        "0 " + this.settings.padding * this.settings.scale + "px";
+      divText.style.paddingRight =
+        this.settings.padding * this.settings.scale + "px";
       keyboard.appendChild(divText);
 
       var paragraph = document.createElement("p");
@@ -1167,15 +1169,15 @@ document.addEventListener("focusin", function load(clicked) {
   oskAction(clicked);
 });
 
-document.addEventListener("focusout", function load(clicked) {
-  if (fxKeyboard.focusElement !== null) {
-    fxKeyboard.oldValue = null;
-    fxKeyboard.focusElement.blur();
-    fxKeyboard._toggleOpen(false);
-    fxKeyboard.focusElement = null;
-    fxKeyboard.lastPress = "apply";
-  }
-});
+// document.addEventListener("focusout", function load(clicked) {
+//   if (fxKeyboard.focusElement !== null) {
+//     fxKeyboard.oldValue = null;
+//     fxKeyboard.focusElement.blur();
+//     fxKeyboard._toggleOpen(false);
+//     fxKeyboard.focusElement = null;
+//     fxKeyboard.lastPress = "apply";
+//   }
+// });
 
 var textInputTypes = {
   input: "",
