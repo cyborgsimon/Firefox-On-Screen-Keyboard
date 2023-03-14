@@ -751,6 +751,7 @@ var fxKeyboard = {
         );
       } else if (
         typeof fxKeyboard.focusElement.maxLength === "undefined" ||
+        fxKeyboard.focusElement.maxLength === -1 ||
         fxKeyboard.focusElement.value.length < fxKeyboard.focusElement.maxLength
       ) {
         fxKeyboard.focusElement.value =
