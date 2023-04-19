@@ -343,6 +343,21 @@ var fxKeyboard = {
     slavedIFrame: null,
   },
 
+  _observeFocusElement: function () {
+    if (this.focusElement === null) {
+    } else if (!document.body.contains(this.focusElement)) {
+      fxKeyboard.oldValue = null;
+      fxKeyboard.focusElement.blur();
+      fxKeyboard._toggleOpen(false);
+      fxKeyboard.focusElement = null;
+      fxKeyboard.lastPress = "apply";
+    } else {
+      setTimeout(function () {
+        fxKeyboard._observeFocusElement();
+      }, 1000);
+    }
+  },
+
   _toggleOpen: function (open) {
     if (document.getElementById(this.activeOSK) === null) {
       this.insertKeyboard(this.activeOSK);
@@ -1170,16 +1185,6 @@ document.addEventListener("focusin", function load(clicked) {
   oskAction(clicked);
 });
 
-// document.addEventListener("focusout", function load(clicked) {
-//   if (fxKeyboard.focusElement !== null) {
-//     fxKeyboard.oldValue = null;
-//     fxKeyboard.focusElement.blur();
-//     fxKeyboard._toggleOpen(false);
-//     fxKeyboard.focusElement = null;
-//     fxKeyboard.lastPress = "apply";
-//   }
-// });
-
 var textInputTypes = {
   input: "",
   select: "",
@@ -1222,6 +1227,7 @@ function oskAction(clicked) {
     fxKeyboard.lastPress !== "apply"
   ) {
     fxKeyboard.focusElement = document.activeElement;
+    fxKeyboard._observeFocusElement();
     if (fxKeyboard.oldValue === null) {
       fxKeyboard.oldValue = fxKeyboard.focusElement.value;
     }
@@ -1237,6 +1243,7 @@ function oskAction(clicked) {
     fxKeyboard.settings.numpadState !== "disabled"
   ) {
     fxKeyboard.focusElement = document.activeElement;
+    fxKeyboard._observeFocusElement();
     if (fxKeyboard.oldValue === null) {
       fxKeyboard.oldValue = fxKeyboard.focusElement.value;
     }
