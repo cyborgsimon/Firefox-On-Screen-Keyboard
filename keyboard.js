@@ -551,46 +551,6 @@ var fxKeyboard = {
         document.activeElement.form.submit();
         fxKeyboard._sendKey(obj.label);
       };
-    } else if (obj.label === "↑") {
-      key.onmouseup = function () {
-        key.style.backgroundColor = "rgb(255,255,255)";
-        var focussableElements =
-          'input:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
-        if (document.activeElement && document.activeElement.form) {
-          var focussable = Array.prototype.filter.call(
-            document.activeElement.form.querySelectorAll(focussableElements),
-            function (element) {
-              return (
-                element.offsetWidth > 0 ||
-                element.offsetHeight > 0 ||
-                element === document.activeElement
-              );
-            }
-          );
-          var index = focussable.indexOf(document.activeElement);
-          focussable[index - 1 >= focussable.length ? 0 : index - 1].focus();
-        }
-      };
-    } else if (obj.label === "↓") {
-      key.onmouseup = function () {
-        key.style.backgroundColor = "rgb(255,255,255)";
-        var focussableElements =
-          'input:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
-        if (document.activeElement && document.activeElement.form) {
-          var focussable = Array.prototype.filter.call(
-            document.activeElement.form.querySelectorAll(focussableElements),
-            function (element) {
-              return (
-                element.offsetWidth > 0 ||
-                element.offsetHeight > 0 ||
-                element === document.activeElement
-              );
-            }
-          );
-          var index = focussable.indexOf(document.activeElement);
-          focussable[index + 1 >= focussable.length ? 0 : index + 1].focus();
-        }
-      };
     } else {
       if (fxKeyboard.state === 1) {
         fxKeyboard.state = 0;
@@ -938,7 +898,8 @@ var fxKeyboard = {
       background.style.left = 0;
       background.style.zIndex = "9999999";
       background.style.display = "none"; //hidden on insert.
-
+      background.id = inputType+"-background";
+      
       keyboard = document.createElement("div");
       keyboard.setAttribute("tabIndex", "-1");
       keyboard.style.maxWidth = max_width * this.settings.scale + "px";
@@ -1173,7 +1134,6 @@ document.addEventListener("mouseup", function load(clicked) {
   if (clicked.target.id.indexOf("fxkey") !== -1) {
     clicked.preventDefault();
   }
-
   oskAction(clicked);
 });
 
@@ -1181,7 +1141,6 @@ document.addEventListener("focusin", function load(clicked) {
   if (clicked.target.id.indexOf("fxkey") !== -1) {
     clicked.preventDefault();
   }
-
   oskAction(clicked);
 });
 
@@ -1250,8 +1209,6 @@ function oskAction(clicked) {
     fxKeyboard.activeOSK = fxKeyboard.inputTypes.numpad;
     fxKeyboard._toggleOpen(true);
   } else {
-    if (clicked.target.id.indexOf("fxkey") === -1) {
-    }
     fxKeyboard.lastPress = null;
   }
 }
