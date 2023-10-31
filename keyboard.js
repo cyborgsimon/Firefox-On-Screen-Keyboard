@@ -843,7 +843,7 @@ var fxKeyboard = {
     }
     return key;
   },
-
+  
   insertKeyboard: function (inputType) {
     var background;
     var keyboard;
@@ -989,7 +989,7 @@ var fxKeyboard = {
 
   getMaxWidth: function (inputType) {
     if (inputType === fxKeyboard.inputTypes.keyboard) {
-      return window.innerWidht;
+      return window.innerWidth;
     }
     if (inputType === fxKeyboard.inputTypes.numpad) {
       return 275;
